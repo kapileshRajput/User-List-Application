@@ -10,8 +10,8 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.kapilesh.roomdatabaselib.R
-import com.example.kapilesh.roomdatabaselib.data.User
-import com.example.kapilesh.roomdatabaselib.data.UserViewModel
+import com.example.kapilesh.roomdatabaselib.model.User
+import com.example.kapilesh.roomdatabaselib.viewmodel.UserViewModel
 import kotlinx.android.synthetic.main.fragment_add.*
 import kotlinx.android.synthetic.main.fragment_add.view.*
 
@@ -28,16 +28,16 @@ class AddFragment : Fragment() {
 
         mUserViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
-        view.btnAdd.setOnClickListener {
+        view.btnUpdate.setOnClickListener {
             insertDataToDatabase()
         }
         return view
     }
 
     private fun insertDataToDatabase() {
-        val firstName = etFirstName.text.toString()
-        val lastName = etLastName.text.toString()
-        val age = etAge.text.toString()
+        val firstName = etUpdateFirstName.text.toString()
+        val lastName = etUpdateLastName.text.toString()
+        val age = etUpdateAge.text.toString()
 
         if (inputCheck(firstName, lastName, age)) {
             // create user object
@@ -55,9 +55,7 @@ class AddFragment : Fragment() {
     }
 
     private fun inputCheck(firstName: String, lastName: String, age: String): Boolean {
-        return !(TextUtils.isEmpty(firstName) && TextUtils.isEmpty(lastName) && TextUtils.isEmpty(
-            age
-        ))
+        return !(TextUtils.isEmpty(firstName) && TextUtils.isEmpty(lastName) && TextUtils.isEmpty(age))
     }
 
 }

@@ -1,10 +1,12 @@
-package com.example.kapilesh.roomdatabaselib.data
+package com.example.kapilesh.roomdatabaselib.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.kapilesh.roomdatabaselib.data.UserDatabase
+import com.example.kapilesh.roomdatabaselib.repository.UserRepository
+import com.example.kapilesh.roomdatabaselib.model.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -22,6 +24,12 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
     fun addUser(user: User){
         viewModelScope.launch(Dispatchers.IO){
             repository.addUser(user)
+        }
+    }
+
+    fun updateUser(user: User){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateUser(user)
         }
     }
 }
